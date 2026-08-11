@@ -188,7 +188,6 @@
     <!-- FOOTER (Se oculta al imprimir) -->
     <footer class="print:hidden bg-[#2c1d11] text-amber-100 py-6 text-center text-xs border-t-4 border-[#002b7f]">
       <p class="font-bold">Bingo CHILENO - Celebra el 18 con Tradición 🇨🇱</p>
-      <p class="text-amber-300/70 mt-1">Desarrollado con Nuxt 4 & Tailwind CSS 4</p>
     </footer>
   </div>
 </template>
