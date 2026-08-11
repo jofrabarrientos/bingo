@@ -55,7 +55,7 @@
             <span class="text-3xl">⚡</span>
             <div>
               <h3 class="font-bold text-[#2c1d11]">Gratis e ilimitado</h3>
-              <p class="text-xs text-slate-600">Genera desde 1 hasta 100 cartones en un solo clic sin registros.</p>
+              <p class="text-xs text-slate-600">Genera desde 1 hasta 1.000 cartones en un solo clic sin registros.</p>
             </div>
           </div>
         </div>
@@ -81,10 +81,10 @@
                 v-model.number="requestedCount"
                 type="number"
                 min="1"
-                max="100"
-                class="w-28 text-center text-lg font-bold border-2 border-slate-300 focus:border-[#002b7f] rounded-lg py-2 px-3 focus:outline-none transition-colors"
+                max="1000"
+                class="w-32 text-center text-lg font-bold border-2 border-slate-300 focus:border-[#002b7f] rounded-lg py-2 px-3 focus:outline-none transition-colors"
               />
-              <span class="text-xs text-slate-500 font-semibold">(Máx. 100)</span>
+              <span class="text-xs text-slate-500 font-semibold">(Máx. 1.000)</span>
             </div>
           </div>
 
@@ -92,7 +92,7 @@
           <div class="flex flex-wrap items-center gap-3 w-full sm:w-auto justify-center">
             <button 
               @click="handleGenerate"
-              class="flex-1 sm:flex-none bg-[#d52b1e] hover:bg-red-700 text-white font-bold py-3 px-6 rounded-xl shadow-lg transition-transform active:scale-95 flex items-center justify-center gap-2 text-base"
+              class="flex-1 sm:flex-none bg-[#d52b1e] hover:bg-red-700 text-white font-bold py-3 px-6 rounded-xl shadow-lg transition-transform active:scale-95 flex items-center justify-center gap-2 text-base cursor-pointer"
             >
               <span>🔄</span> Generar Cartones
             </button>
@@ -107,9 +107,12 @@
           </div>
         </div>
 
-        <div class="mt-4 text-center">
+        <div class="mt-4 text-center space-y-1">
           <p class="text-xs text-slate-500">
-            Cartones generados actualmente: <strong class="text-slate-800">{{ generatedCards.length }}</strong>
+            Cartones generados actualmente: <strong class="text-slate-800 text-sm">{{ generatedCards.length.toLocaleString() }}</strong>
+          </p>
+          <p v-if="generatedCards.length > 50" class="text-[11px] text-blue-700 font-semibold">
+            ℹ️ Vista previa paginada en pantalla. Todos los {{ generatedCards.length.toLocaleString() }} cartones se incluirán al imprimir / PDF en A4.
           </p>
         </div>
       </div>
@@ -123,27 +126,96 @@
         <p class="text-slate-500 text-sm">Elige la cantidad arriba y presiona "Generar Cartones".</p>
       </div>
 
-      <div v-else class="space-y-8">
-        <!-- Título visible solo al imprimir -->
-        <div class="hidden print:block text-center mb-4">
-          <h1 class="font-heading text-xl text-[#002b7f]">Bingo CHILENO - Fiestas Patrias</h1>
-          <p class="text-xs text-slate-600">Cartones de Juego para Imprimir</p>
+      <div v-else class="space-y-6">
+        <!-- VISTA DE PANTALLA (Paginada si hay más de 24 cartones) -->
+        <div class="print:hidden space-y-6">
+          <!-- Barra de Navegación de Páginas (Superior) -->
+          <div v-if="totalPages > 1" class="bg-amber-50 border border-amber-200 rounded-xl p-4 flex flex-col sm:flex-row items-center justify-between gap-4 shadow-sm">
+            <div class="text-xs text-amber-900 font-medium">
+              Mostrando cartones <strong>{{ startIndex }}</strong> al <strong>{{ endIndex }}</strong> de <strong>{{ generatedCards.length.toLocaleString() }}</strong>
+              <span class="text-amber-700 font-bold ml-1">(Página {{ currentPage }} de {{ totalPages }})</span>
+            </div>
+
+            <div class="flex items-center gap-2">
+              <button 
+                @click="prevPage" 
+                :disabled="currentPage === 1"
+                class="px-3 py-1.5 bg-white border border-slate-300 rounded-lg text-xs font-bold text-slate-700 disabled:opacity-40 disabled:cursor-not-allowed hover:bg-slate-50 transition-colors shadow-sm"
+              >
+                ◄ Anterior
+              </button>
+
+              <span class="text-xs font-bold text-slate-600 px-1">
+                {{ currentPage }} / {{ totalPages }}
+              </span>
+
+              <button 
+                @click="nextPage" 
+                :disabled="currentPage === totalPages"
+                class="px-3 py-1.5 bg-white border border-slate-300 rounded-lg text-xs font-bold text-slate-700 disabled:opacity-40 disabled:cursor-not-allowed hover:bg-slate-50 transition-colors shadow-sm"
+              >
+                Siguiente ►
+              </button>
+            </div>
+          </div>
+
+          <!-- Grilla Paginada para Pantalla -->
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div 
+              v-for="(card, index) in paginatedCards" 
+              :key="(currentPage - 1) * pageSize + index"
+              class="print-card-wrapper mb-6"
+            >
+              <div class="text-xs font-bold text-slate-500 mb-1 text-center">
+                Cartón #{{ (currentPage - 1) * pageSize + index + 1 }}
+              </div>
+              <BingoCard :card="card" :card-index="(currentPage - 1) * pageSize + index + 1" />
+            </div>
+          </div>
+
+          <!-- Barra de Navegación de Páginas (Inferior) -->
+          <div v-if="totalPages > 1" class="flex flex-col sm:flex-row items-center justify-between gap-4 pt-4 border-t border-slate-200">
+            <span class="text-xs text-slate-500">
+              Página {{ currentPage }} de {{ totalPages }} ({{ generatedCards.length.toLocaleString() }} cartones en total)
+            </span>
+            <div class="flex items-center gap-2">
+              <button 
+                @click="prevPage" 
+                :disabled="currentPage === 1"
+                class="px-4 py-2 bg-white border border-slate-300 rounded-lg text-xs font-bold text-slate-700 disabled:opacity-40 disabled:cursor-not-allowed hover:bg-slate-50 transition-colors shadow-sm"
+              >
+                ◄ Anterior
+              </button>
+
+              <button 
+                @click="nextPage" 
+                :disabled="currentPage === totalPages"
+                class="px-4 py-2 bg-white border border-slate-300 rounded-lg text-xs font-bold text-slate-700 disabled:opacity-40 disabled:cursor-not-allowed hover:bg-slate-50 transition-colors shadow-sm"
+              >
+                Siguiente ►
+              </button>
+            </div>
+          </div>
         </div>
 
-        <!-- Grilla de Cartones -->
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 print:grid-cols-1 print:gap-6">
-          <div 
-            v-for="(card, index) in generatedCards" 
-            :key="index"
-            :class="[
-              'print-card-wrapper',
-              (index + 1) % 2 === 0 ? 'print-page-break mb-0' : 'mb-6 print:mb-8'
-            ]"
-          >
-            <div class="print:hidden text-xs font-bold text-slate-500 mb-1 text-center">
-              Cartón #{{ index + 1 }}
+        <!-- VISTA DE IMPRESIÓN COMPLETA (Visible SOLO al imprimir en A4) -->
+        <div class="hidden print:block space-y-6">
+          <div class="text-center mb-4">
+            <h1 class="font-heading text-xl text-[#002b7f]">Bingo CHILENO - Fiestas Patrias</h1>
+            <p class="text-xs text-slate-600">Cartones de Juego para Imprimir (Formato A4)</p>
+          </div>
+
+          <div class="grid grid-cols-1 gap-6 print:grid-cols-1">
+            <div 
+              v-for="(card, index) in generatedCards" 
+              :key="'print-' + index"
+              :class="[
+                'print-card-wrapper',
+                (index + 1) % 2 === 0 ? 'print-page-break mb-0' : 'mb-6 print:mb-8'
+              ]"
+            >
+              <BingoCard :card="card" :card-index="index + 1" />
             </div>
-            <BingoCard :card="card" :card-index="index + 1" />
           </div>
         </div>
       </div>
@@ -193,14 +265,14 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted } from 'vue'
+import { ref, computed, onMounted } from 'vue'
 import { useBingo, type BingoCell } from '~/composables/useBingo'
 
 // Configuración SEO Mejorada
 useHead({
   title: 'Bingo CHILENO - Generador de Cartones de Fiestas Patrias 🇨🇱',
   meta: [
-    { name: 'description', content: 'Generador gratis e ilimitado de cartones de Bingo para Fiestas Patrias de Chile. Imprime cartones con empanadas, cueca, terremoto y más tradiciones.' },
+    { name: 'description', content: 'Generador gratis e ilimitado de cartones de Bingo para Fiestas Patrias de Chile. Imprime desde 1 hasta 1.000 cartones en PDF A4 con empanadas, cueca y más.' },
     { property: 'og:title', content: 'Bingo CHILENO - Generador de Cartones de Fiestas Patrias' },
     { property: 'og:description', content: 'Crea e imprime cartones aleatorios de Bingo costumbrista para celebrar el 18 de Septiembre en familia y fondas.' },
     { property: 'og:type', content: 'website' },
@@ -227,10 +299,37 @@ const { conceptos, generateCards } = useBingo()
 const requestedCount = ref<number>(4)
 const generatedCards = ref<BingoCell[][]>([])
 
+// Paginación en Pantalla
+const currentPage = ref<number>(1)
+const pageSize = ref<number>(24)
+
+const totalPages = computed(() => Math.ceil(generatedCards.value.length / pageSize.value))
+
+const paginatedCards = computed(() => {
+  const start = (currentPage.value - 1) * pageSize.value
+  return generatedCards.value.slice(start, start + pageSize.value)
+})
+
+const startIndex = computed(() => (currentPage.value - 1) * pageSize.value + 1)
+const endIndex = computed(() => Math.min(currentPage.value * pageSize.value, generatedCards.value.length))
+
 const handleGenerate = () => {
-  const count = Math.min(Math.max(1, requestedCount.value || 1), 100)
+  const count = Math.min(Math.max(1, requestedCount.value || 1), 1000)
   requestedCount.value = count
   generatedCards.value = generateCards(count)
+  currentPage.value = 1
+}
+
+const nextPage = () => {
+  if (currentPage.value < totalPages.value) {
+    currentPage.value++
+  }
+}
+
+const prevPage = () => {
+  if (currentPage.value > 1) {
+    currentPage.value--
+  }
 }
 
 const handlePrint = () => {
