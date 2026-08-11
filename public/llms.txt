@@ -1,0 +1,53 @@
+# Bingo CHILENO - Generador de Cartones de Fiestas Patrias
+
+> Generador gratuito e ilimitado de cartones de Bingo personalizados con tradiciones, comidas y símbolos típicos de las Fiestas Patrias de Chile (18 de Septiembre).
+
+## Descripción del Proyecto
+
+Bingo CHILENO es una aplicación web progresiva diseñada para crear e imprimir al instante cartones de bingo temáticos de la cultura chilena. Es ideal para fondas, ramadas, colegios, empresas y reuniones familiares.
+
+- **URL**: https://bingochileno.cl/
+- **Licencia**: Gratuito e ilimitado
+- **Requisitos de uso**: No requiere registro ni descarga de aplicaciones.
+
+## Funcionalidades Principales
+
+- **Generador Aleatorio**: Generación instantánea de 1 a 100 cartones únicos de 5x5 con distribución aleatoria de conceptos.
+- **Casilla Central Libre**: Casilla central temática "LIBRE 🇨🇱".
+- **Modo Impresión / PDF**: Optimizado para imprimir en hojas formato A4 (2 cartones por hoja) o guardar como PDF.
+- **Diseño Responsivo**: Adaptado para computadores, tablets y dispositivos móviles.
+
+## Lista de Conceptos Tradicionales Incluidos
+
+Cada cartón selecciona 24 conceptos al azar de la siguiente lista:
+
+1. Cueca Dancer (💃)
+2. Empanada de Pino (🥟)
+3. Bandera Chilena (🇨🇱)
+4. Terremoto (🍹)
+5. Anticucho (🍢)
+6. Volantín (🪁)
+7. Pareja de Cueca (👫)
+8. Guirnalda (🎊)
+9. Mote con Huesillo (🥤)
+10. Huaso Chileno (🤠)
+11. Poncho Chileno (🧥)
+12. Chicha en Cacho (🍷)
+13. Fondas (🎪)
+14. Trompo (🪀)
+15. Yegua Corralera (🐎)
+16. Empanadas y Vino (🥟🍷)
+17. Bandera Flameando (🚩)
+18. Zapateo (👞)
+19. Fiesta en Parque (🌳)
+20. Botellas de Vino (🍾)
+21. Volantines Colores (🪁✨)
+22. Banda de Cueca (🎸)
+23. Fuegos Artificiales (🎆)
+24. Copihue y Cóndor (🦅🌺)
+
+## Reglas e Instrucciones de Juego
+
+1. El animador o "cantador" anuncia los conceptos chilenos en orden aleatorio.
+2. Los participantes marcan la casilla con el símbolo y texto correspondiente en su cartón.
+3. Gana el primer jugador en completar una línea horizontal, vertical, diagonal o el cartón completo cantando ¡BINGO! o ¡TIQUI TIQUI TI!.
