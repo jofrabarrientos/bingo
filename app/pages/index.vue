@@ -254,6 +254,33 @@
             </div>
           </div>
         </div>
+
+        <!-- Artículos de Interés (Blog) -->
+        <div class="space-y-6 pt-10 border-t border-slate-200 mt-10">
+          <h4 class="font-heading text-2xl text-[#d52b1e] text-center">Blog y Cultura Dieciochera</h4>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <NuxtLink to="/blog/reglas-del-bingo-dieciochero" class="bg-white p-5 rounded-xl border-2 border-transparent hover:border-[#002b7f] shadow-sm hover:shadow-md transition-all group flex flex-col h-full">
+              <h5 class="font-bold text-lg text-[#2c1d11] group-hover:text-[#002b7f] mb-2">Las Reglas del "Bingo Dieciochero"</h5>
+              <p class="text-sm text-slate-600 flex-1">Aprende a jugar esta divertida variante con conceptos tradicionales en lugar de números.</p>
+              <span class="text-[#002b7f] text-xs font-bold mt-3 group-hover:underline">Leer artículo →</span>
+            </NuxtLink>
+            <NuxtLink to="/blog/historia-y-tradicion-juegos-tipicos" class="bg-white p-5 rounded-xl border-2 border-transparent hover:border-[#002b7f] shadow-sm hover:shadow-md transition-all group flex flex-col h-full">
+              <h5 class="font-bold text-lg text-[#2c1d11] group-hover:text-[#002b7f] mb-2">Juegos Típicos en Fiestas Patrias</h5>
+              <p class="text-sm text-slate-600 flex-1">Descubre por qué la lotería, el bingo y otros juegos son infaltables cada 18 de septiembre.</p>
+              <span class="text-[#002b7f] text-xs font-bold mt-3 group-hover:underline">Leer artículo →</span>
+            </NuxtLink>
+            <NuxtLink to="/blog/guia-rapida-fonda-familiar-en-casa" class="bg-white p-5 rounded-xl border-2 border-transparent hover:border-[#002b7f] shadow-sm hover:shadow-md transition-all group flex flex-col h-full">
+              <h5 class="font-bold text-lg text-[#2c1d11] group-hover:text-[#002b7f] mb-2">Cómo organizar una Fonda en casa</h5>
+              <p class="text-sm text-slate-600 flex-1">Consejos prácticos para armar tu propia ramada familiar con comida, decoración y juegos.</p>
+              <span class="text-[#002b7f] text-xs font-bold mt-3 group-hover:underline">Leer artículo →</span>
+            </NuxtLink>
+            <NuxtLink to="/blog/como-usar-generador-cartones-bingo" class="bg-white p-5 rounded-xl border-2 border-transparent hover:border-[#002b7f] shadow-sm hover:shadow-md transition-all group flex flex-col h-full">
+              <h5 class="font-bold text-lg text-[#2c1d11] group-hover:text-[#002b7f] mb-2">Guía: Generador de Cartones</h5>
+              <p class="text-sm text-slate-600 flex-1">Un tutorial paso a paso para crear, previsualizar e imprimir tus cartones de bingo gratis.</p>
+              <span class="text-[#002b7f] text-xs font-bold mt-3 group-hover:underline">Leer artículo →</span>
+            </NuxtLink>
+          </div>
+        </div>
       </div>
     </section>
 
