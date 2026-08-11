@@ -6,17 +6,12 @@ export default defineNuxtConfig({
   future: {
     compatibilityVersion: 4,
   },
+  ssr: false,
   css: ['~/assets/css/main.css'],
   vite: {
     plugins: [
       tailwindcss(),
     ],
-  },
-  nitro: {
-    preset: 'cloudflare_pages',
-    prerender: {
-      autoSubfolderIndex: false
-    }
   },
   app: {
     head: {
