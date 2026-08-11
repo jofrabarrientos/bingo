@@ -6,7 +6,9 @@ export default defineNuxtConfig({
   future: {
     compatibilityVersion: 4,
   },
-  ssr: false,
+  nitro: {
+    preset: 'cloudflare_pages',
+  },
   css: ['~/assets/css/main.css'],
   vite: {
     plugins: [
