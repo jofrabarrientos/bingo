@@ -34,7 +34,8 @@
     </main>
 
     <footer class="bg-[#2c1d11] text-amber-100 py-6 text-center text-xs border-t-4 border-[#002b7f]">
-      <p class="font-bold">Bingo CHILENO - Celebra el 18 con Tradición 🇨🇱</p>
+      <p class="font-bold mb-2">Bingo CHILENO - Celebra el 18 con Tradición 🇨🇱</p>
+      <NuxtLink to="/privacidad" class="text-amber-200/70 hover:text-amber-100 underline decoration-amber-200/30 hover:decoration-amber-100 transition-colors">Política de Privacidad y Cookies</NuxtLink>
     </footer>
   </div>
 </template>
