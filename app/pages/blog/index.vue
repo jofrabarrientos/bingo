@@ -19,6 +19,12 @@
       </div>
       
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+        <NuxtLink to="/blog/como-animar-un-bingo-y-ser-el-alma-de-la-fiesta" class="bg-white p-6 rounded-2xl border border-[#e5d5bc] shadow-sm hover:shadow-lg hover:border-[#002b7f] transition-all group flex flex-col h-full">
+          <h2 class="font-heading text-2xl text-[#2c1d11] group-hover:text-[#002b7f] mb-3">Guía Definitiva: Cómo Animar un Bingo</h2>
+          <p class="text-base text-slate-600 flex-1">Descubre los mejores consejos, cantos tradicionales y tips para animar un bingo chileno con mucho éxito.</p>
+          <span class="text-[#d52b1e] font-bold mt-4 flex items-center gap-2 group-hover:gap-3 transition-all">Leer artículo <span>→</span></span>
+        </NuxtLink>
+
         <NuxtLink to="/blog/reglas-del-bingo-dieciochero" class="bg-white p-6 rounded-2xl border border-[#e5d5bc] shadow-sm hover:shadow-lg hover:border-[#002b7f] transition-all group flex flex-col h-full">
           <h2 class="font-heading text-2xl text-[#2c1d11] group-hover:text-[#002b7f] mb-3">Las Reglas del "Bingo Dieciochero"</h2>
           <p class="text-base text-slate-600 flex-1">Aprende a jugar esta divertida variante con conceptos tradicionales en lugar de números.</p>
