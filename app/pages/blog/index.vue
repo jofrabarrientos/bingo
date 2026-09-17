@@ -48,6 +48,12 @@
           <p class="text-base text-slate-600 flex-1">Un tutorial paso a paso para crear, previsualizar e imprimir tus cartones de bingo gratis.</p>
           <span class="text-[#d52b1e] font-bold mt-4 flex items-center gap-2 group-hover:gap-3 transition-all">Leer artículo <span>→</span></span>
         </NuxtLink>
+
+        <NuxtLink to="/blog/mejores-cortes-de-carne-para-el-18" class="bg-white p-6 rounded-2xl border border-[#e5d5bc] shadow-sm hover:shadow-lg hover:border-[#002b7f] transition-all group flex flex-col h-full">
+          <h2 class="font-heading text-2xl text-[#2c1d11] group-hover:text-[#002b7f] mb-3">Cortes de Carne para el 18</h2>
+          <p class="text-base text-slate-600 flex-1">Descubre los mejores cortes de carne (lomo vetado, entraña, punta picana) para lucirte en la parrilla en Fiestas Patrias.</p>
+          <span class="text-[#d52b1e] font-bold mt-4 flex items-center gap-2 group-hover:gap-3 transition-all">Leer artículo <span>→</span></span>
+        </NuxtLink>
       </div>
     </main>
 
